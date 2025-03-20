@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Management - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            color: #fff;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+            }
+        }
+
+        /* Header */
+        .dashboard-container h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        nav ul li a {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.5);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 15px;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00ffff;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #00ffff, #00bcd4);
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        /* Lists */
+        .notice-list,
+        .complaint-list,
+        .item-list {
+            margin-top: 15px;
+        }
+
+        .notice,
+        .complaint,
+        .item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid #00ffff;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .notice:hover,
+        .complaint:hover,
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .notice h3,
+        .complaint h3,
+        .item h3 {
+            margin: 0;
+            color: #00ffff;
+            font-size: 1.2rem;
+        }
+
+        .notice p,
+        .complaint p,
+        .item p {
+            margin: 5px 0 0;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome to Your Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#notices">Notices</a></li>
+                <li><a href="#complaints">Complaints</a></li>
+                <li><a href="#marketplace">Marketplace</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Notification Board -->
+        <section id="notices" class="section">
+            <h2>Notification Board</h2>
+            <div id="noticeList" class="notice-list">
+                <!-- Notices will be dynamically added here -->
+            </div>
+            <form id="noticeForm" class="form">
+                <div class="form-group">
+                    <textarea id="noticeInput" placeholder="Post a new notice..." required></textarea>
+                </div>
+                <button type="submit">Post Notice</button>
+            </form>
+        </section>
+
+        <!-- Complaint Tracker -->
+        <section id="complaints" class="section">
+            <h2>Complaint Tracker</h2>
+            <form id="complaintForm" class="form">
+                <div class="form-group">
+                    <input type="text" id="complaintTitle" placeholder="Complaint Title" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="complaintDescription" placeholder="Describe your complaint..." required></textarea>
+                </div>
+                <button type="submit">Submit Complaint</button>
+            </form>
+            <div id="complaintList" class="complaint-list">
+                <!-- Complaints will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Marketplace -->
+        <section id="marketplace" class="section">
+            <h2>Marketplace</h2>
+            <form id="itemForm" class="form">
+                <div class="form-group">
+                    <input type="text" id="itemName" placeholder="Item Name" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="itemDescription" placeholder="Item Description..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="itemPrice" placeholder="Price" required>
+                </div>
+                <button type="submit">Sell Item</button>
+            </form>
+            <div id="itemList" class="item-list">
+                <!-- Items for sale will be dynamically added here -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Form Submission for Notices
+        document.getElementById('noticeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const notice = document.getElementById('noticeInput').value;
+            const noticeItem = document.createElement('div');
+            noticeItem.className = 'notice';
+            noticeItem.innerHTML = `<h3>New Notice</h3><p>${notice}</p>`;
+            document.getElementById('noticeList').appendChild(noticeItem);
+            document.getElementById('noticeInput').value = '';
+        });
+
+        // Form Submission for Complaints
+        document.getElementById('complaintForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('complaintTitle').value;
+            const description = document.getElementById('complaintDescription').value;
+            const complaintItem = document.createElement('div');
+            complaintItem.className = 'complaint';
+            complaintItem.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
+            document.getElementById('complaintList').appendChild(complaintItem);
+            document.getElementById('complaintForm').reset();
+        });
+
+        // Form Submission for Marketplace
+        document.getElementById('itemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('itemName').value;
+            const description = document.getElementById('itemDescription').value;
+            const price = document.getElementById('itemPrice').value;
+            const item = document.createElement('div');
+            item.className = 'item';
+            item.innerHTML = `<h3>${name}</h3><p>${description}</p><p>Price: $${price}</p>`;
+            document.getElementById('itemList').appendChild(item);
+            document.getElementById('itemForm').reset();
+        });
+
+        // Logout
+        document.getElementById('logout').addEventListener('click', function() {
+            alert('Logged out successfully!');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
